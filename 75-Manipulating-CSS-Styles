@@ -1,0 +1,66 @@
+//75.  Implementing CSS Styles
+
+//Previously:
+---------------------------------------------- 
+/* 74. Implementing Program Logic
+We want to figure out what we need to make happen.
+A) Generate a random number
+B) What happens if guess is correct?
+C) What happens if guess is too low?
+D) What happens if guess is too high?
+E) Need to keep track of the score
+F) Need to keep track of the high score
+G) Game should end when score reaches 0.
+-----------------------------------------------*/
+
+'use strict';
+
+//Generate a random number
+const secretNumber = Math.trunc(Math.random() * 21);
+//Display random number for development purposes
+
+//Create a score variable
+let score = 20;
+
+//"Listen" for user input -- their guess
+document.querySelector('.check').addEventListener('click', function () {
+  const guess = Number(document.querySelector('.guess').value);
+  console.log(guess, typeof guess);
+
+  //When there is no input
+  if (!guess) {
+    document.querySelector('.message').textContent = ' No number! ☹️';
+
+    //When Player Wins:
+  } else if (guess === secretNumber) {
+    document.querySelector('.message').textContent = 'Correct Number! 👍';
+
+    //Display correct number
+    document.querySelector('.number').textContent = secretNumber;
+
+    document.querySelector('body').style.backgroundColor = '#60b347';
+
+    document.querySelector('.number').style.width = '30rem';
+    //When guess is too high
+  } else if (guess > secretNumber) {
+    if (score > 1) {
+      document.querySelector('.message').textContent = 'Too high! ❗ ';
+      score--; //decrease score
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = 'You lost the game! 🤯 ';
+      document.querySelector('.score').textContent = 0;
+    }
+
+    //When guess is too low
+  } else if (guess < secretNumber) {
+    if (score > 1) {
+      document.querySelector('.message').textContent = 'Too low! ❗ ';
+      score--; //decrease score
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = 'You lost the game! 🤯 ';
+      document.querySelector('.score').textContent = 0;
+    }
+  }
+});
