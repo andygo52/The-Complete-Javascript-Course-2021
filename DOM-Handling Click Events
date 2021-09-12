@@ -1,0 +1,17 @@
+/* ---------------------------------------------<
+This will be the first time our code reacts
+to somethng in the DOM, and for that, we use
+an event listener.
+---------------------------------------------- */
+'use strict';
+
+document.querySelector('.check').addEventListener('click', function(){
+   const guess = Number(document.querySelector('.guess').value);
+   console.log(guess, typeof guess);
+
+   if(!guess) {
+      document.querySelector('.message').textContent =
+      ' No number! ☹️' ;
+   }
+});
+
